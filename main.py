@@ -19,7 +19,29 @@ from api import RoleHandler, UserByRoleHandler
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.out.write('Hello world!')
+       self.response.out.write("""
+<h1>Hello Clones!</h1>
+
+<p>We have two service methods:</p>
+<ul>
+	<li>
+		/api/getRoles
+		<ul>
+			<li>Uses HTTP GET</li>
+			<li>Requires no parameters</li>
+			<li>Returns JSON array of role names</li>
+		</ul>
+	</li>
+	<li>
+		/api/getUsersByRole
+		<ul>
+			<li>Uses HTTP POST</li>
+			<li>Requires one parameter: role</li>
+			<li>Returns JSON array of user names</li>
+		</ul>
+	</li>
+</ul>	
+""")
 
 app = webapp2.WSGIApplication([
 		('/', MainHandler),
