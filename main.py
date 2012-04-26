@@ -15,10 +15,14 @@
 # limitations under the License.
 #
 import webapp2
+from api import RoleHandler, UserByRoleHandler
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         self.response.out.write('Hello world!')
 
-app = webapp2.WSGIApplication([('/', MainHandler)],
-                              debug=True)
+app = webapp2.WSGIApplication([
+		('/', MainHandler),
+		('/api/getRoles', RoleHandler),
+		('/api/getUsersByRole', UserByRoleHandler),
+	],debug=True)
