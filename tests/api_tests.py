@@ -22,7 +22,11 @@ class api_tests(unittest.TestCase):
     response = self.testapp.get('/getRoles')
     self.assertEqual(response.normal_body, 'ROLES!')
 
-  def test_UserByRoleHandler_returns_nothing_when_no_request_param(self):
+  def test_RolesHandler_rejects_post(self):
+	response = self.testapp.post('/getRoles', status="*")
+	self.assertEqual(response.status_int, 405)
+
+  def test_UserByRoleHandler_empty_response_with_no_params(self):
 	params = {}
 	response = self.testapp.post('/getUsersByRole', params)
 	self.assertEquals(response.normal_body, "")
