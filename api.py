@@ -19,12 +19,14 @@ users = {
 }
 
 class RoleHandler(webapp2.RequestHandler):
-    def get(self):        
+    def get(self):
+        self.response.headers['Content-Type'] = 'application/json'
         self.response.out.write(json.dumps(roles))
 
 class UserByRoleHandler(webapp2.RequestHandler):
     def post(self):
         incomingRole = self.request.get('role')
+        self.response.headers['Content-Type'] = 'application/json'
         if incomingRole:
             try:
 				self.response.out.write(json.dumps(users[incomingRole]))
